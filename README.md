@@ -1,4 +1,4 @@
-# UaExporter
+# 📊 UaExporter
 Export your Universal Analytics data to your own datasources (**CSV**, **Clickhouse**).
 
 ## Configuration
