@@ -1,5 +1,9 @@
 # 📊 UaExporter
-Export your Universal Analytics data to your own datasources (**CSV**, **Clickhouse**).
+
+> ⚠️ Important Notice: Universal Analytics (UA) properties stopped processing new hits on 1 July 2023, and the **UA API is scheduled to stop working on 1 July 2024**. To preserve your metrics, it is crucial to export your data. For more detailed information, please visit the Google support page at https://support.google.com/analytics/answer/11583528?hl=en.
+
+**UaExporter** helps you export your Universal Analytics data to your own datasources, including **CSV** and **Clickhouse**.
+
 
 ## Configuration
 ### 1. Environment Variables
