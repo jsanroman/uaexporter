@@ -1,0 +1,52 @@
+import os
+import math
+import re
+from ua_connector import UaConnector
+
+class Report:
+    def __init__(self, config):
+        super().__init__()
+        self.ua_connector = UaConnector()
+        self.config = config
+        self.data = {}
+        self.current_page = 0
+        self.pages = 0
+        self.max_results = int(os.getenv('GA_MAX_RESULTS_BY_REQUEST', 10000))
+        self._load_pagination()
+
+    def get_headers(self):
+        return self.data["columnHeaders"]
+
+    def get_rows(self):
+        return self.data["rows"]
+
+    def get_name(self):
+        return self.config['name']
+
+    def get_storage_name(self):
+      pattern_disallowed_chars = re.compile(r'[^\w\s-]')  # Allow hyphens here to replace them later
+      pattern_spaces_hyphens_underscores = re.compile(r'[\s_-]+')  # Match spaces, hyphens, and underscores
+      pattern_leading_trailing_underscores = re.compile(r'^_+|_+$')
+
+      s = self.get_name().lower().strip()
+      s = pattern_disallowed_chars.sub('', s)
+      s = pattern_spaces_hyphens_underscores.sub('_', s)
+      s = pattern_leading_trailing_underscores.sub('', s)
+
+      return s
+
+    def load_data(self, page):
+        self.current_page = page
+
+        self.data = self.ua_connector.get_data(
+          self.config, 
+          start_index=self._start_index(), 
+          max_results=self.max_results
+        )
+
+    def _start_index(self):
+        return (self.current_page - 1) * self.max_results + 1
+
+    def _load_pagination(self):
+        self.data = self.ua_connector.get_data(self.config)
+        self.pages = math.ceil(self.data["totalResults"] / self.max_results)

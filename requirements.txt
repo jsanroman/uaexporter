@@ -1,0 +1,9 @@
+google-api-python-client==2.111.0
+oauth2client
+clickhouse-connect
+clickhouse-driver
+python-dotenv
+pyyaml
+tqdm
+pytest
+pytest-mock

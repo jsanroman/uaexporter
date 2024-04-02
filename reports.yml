@@ -1,0 +1,16 @@
+# Define here your reports based on your dates, metrics and dimensions. 
+# Use the Google Analytics Query Explorer (https://ga-dev-tools.appspot.com/query-explorer/) to prototype and test your queries.
+
+- name: transactions-december-2022
+  connector: clickhouse
+  start_date: '2022-12-20'
+  end_date: '2022-12-31'
+  metrics: 'ga:transactions'
+  dimensions: 'ga:pagePath,ga:date'
+
+- name: pageviews-december-2022
+  connector: csv
+  start_date: '2022-12-20'
+  end_date: '2022-12-31'
+  metrics: 'ga:pageviews'
+  dimensions: 'ga:pagePath,ga:date'
