@@ -22,7 +22,39 @@ Customize reports.yml to define the specifics of the data you want to export:
 Use the Google Analytics Query Explorer (https://ga-dev-tools.appspot.com/query-explorer/) to prototype and test your queries with customm metrics and dimensions.
 
 ## Usage
-To execute UaExporter, simply run:
+
+### In your own environment
+Install the required Python packages:
+```
+pip install --progress-bar off -r requirements.txt
+```
+
+Execute the uaexporter script:
 ```
 ./uaexporter
+```
+Ensure that uaexporter has the necessary execution permissions: `chmod +x uaexporter`
+
+### Using Docker
+Build the Docker image:
+```
+docker build -t uaexporter .
+```
+Run the uaexporter container:
+```
+docker run uaexporter
+```
+
+### Using Docker Compose to start clickhouse server too
+Build the services defined in your docker-compose.yml:
+```
+docker-compose build
+```
+Start the services:
+```
+docker-compose up
+```
+Execute uaexporter within the running container:
+```
+docker-compose exec uaexporter ./uaexporter
 ```
