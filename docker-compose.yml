@@ -1,0 +1,33 @@
+version: '3.5'
+services:
+  uaexporter:
+    container_name: uaexporter
+    build: 
+      context: .
+      dockerfile: ./Dockerfile
+    volumes:
+      - './:/usr/src/uaexporter'
+    external_links:
+      - uaexporter-clickhouse
+    command: "/bin/sh"
+    tty: true
+    cap_add:
+      - SYS_ADMIN
+
+  uaexporter-clickhouse:
+    image: clickhouse/clickhouse-server:24.1.8.22
+    container_name: uaexporter-clickhouse
+    ports:
+      - "8123:8123"
+      - "9000:9000"
+    volumes:
+      - /var/docker-data/uaexporter-clickhouse_data:/var/lib/clickhouse
+      - /var/docker-data/uaexporter-clickhouse_log:/var/log/clickhouse-server
+      - /var/docker-data/uaexporter-clickhouse_config:/etc/clickhouse-server
+    expose:
+      - '8123'
+
+volumes:
+  clickhouse_data:
+  clickhouse_log:
+  clickhouse_config:
