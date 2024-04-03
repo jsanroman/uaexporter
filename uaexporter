@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from app.main import export
+from src.main import export
 
 if __name__ == "__main__":
     export()
