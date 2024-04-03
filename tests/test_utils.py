@@ -1,6 +1,6 @@
 import pytest
 from unittest.mock import mock_open, patch
-from app.utils import load_yml
+from utils import load_yml
 
 @pytest.fixture
 def mock_yaml_data():
