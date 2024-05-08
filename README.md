@@ -18,6 +18,7 @@ Customize reports.yml to define the specifics of the data you want to export:
 - **end_date**: The ending date for the data export.
 - **metrics**: Specify the metrics from Universal Analytics, e.g., `ga:pageviews`.
 - **dimensions**: Define the dimensions to include, e.g., `ga:pagePath,ga:date`.
+- **split_requests_by**: If you have sampling issues, set this property to `day` and make one request per day.
 
 Use the Google Analytics Query Explorer (https://ga-dev-tools.appspot.com/query-explorer/) to prototype and test your queries with customm metrics and dimensions.
 
